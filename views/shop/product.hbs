@@ -1,0 +1,266 @@
+<div class="row">
+  <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
+  {{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                    <p>{{ this }}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+    <div id="success" class="alert alert-success" {{#if noMessage}}hidden{{/if}}>
+      {{ successMsg }}
+    </div>
+  </div>
+</div>
+{{#each products}}
+{{#each this }}
+<div class="container-fluid" style="z-index:-1;">
+    <div class="content-wrapper">	
+		<div class="item-container">	
+				<div class="container">
+<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+    <div class='carousel-outer'>
+        <!-- me art lab slider -->
+        <div class='carousel-inner '>
+            {{#each this.galery }}
+            {{#eq @index 0}}
+              <div class='item active'>
+                <img src='{{ this }} ' alt=''id="zoom_05"  data-zoom-image="{{ this }}"/>
+              </div>
+            {{ else }}
+              <div class='item'>
+                <img src='{{ this }}' alt='' data-zoom-image="{{ this }}" />
+              </div>
+            {{/eq}}
+            {{/each}}
+            <!--
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg" />
+            </div>
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg" />
+            </div>
+                
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05"/>
+            </div>
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg" id="zoom_05"/>
+            </div>
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg" id="zoom_05"/>
+            </div>
+            <div class='item'>
+                <img src='http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpgg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpg" id="zoom_05"/>
+            </div>
+            -->
+        </div>
+            
+        <!-- sag sol -->
+        <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+            <span class='glyphicon glyphicon-chevron-left'></span>
+        </a>
+        <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+            <span class='glyphicon glyphicon-chevron-right'></span>
+        </a>
+    </div>
+    
+    <!-- thumb -->
+    <ol class='carousel-indicators meartlab'>
+        {{#each this.galery }}
+        {{#eq @index 0}}
+          <li data-target='#carousel-custom' data-slide-to='{{ @index }}' class='active'><img src='{{ this }}' alt='' /></li>
+        {{ else }}
+          <li data-target='#carousel-custom' data-slide-to='{{ @index }}'><img src='{{ this }}' alt='' /></li>
+        {{/eq}}
+        <!--
+        <li data-target='#carousel-custom' data-slide-to='0' class='active'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='1'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='2'><img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='3'><img src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='4'><img src='http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='5'><img src='http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg' alt='' /></li>
+        <li data-target='#carousel-custom' data-slide-to='6'><img src='http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpg' alt='' /></li>
+        -->
+        {{/each}}
+    </ol>
+</div>
+					
+				<div class="col-md-6">
+					<div class="product-title">{{ this.title }}</div>
+					<div class="product-desc">{{ this.description }}</div>
+					<div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+					<hr>
+          {{#startsWith ../../currencyName "usd"}}
+					<div class="product-price">{{../../symbol}} {{ this.price.usd }}</div>
+          {{ else }}
+          <div class="product-price">{{../../symbol}} {{ this.price.eur }}</div>
+          {{/startsWith}}
+          {{#startsWith this.availability "inStock"}}
+					<div class="product-stock">{{../../__ this.availability}} / qty : {{ this.qty }}</div>
+					<hr>
+					<div class="btn-group cart">
+						<a href="/add-to-cart/{{../../id}}" type="button" class="btn btn-success">
+							Add to cart 
+						</a>
+					</div>
+          {{ else }}
+          <div style="color: red;" class="product-stock">{{../../__ this.availability}}</div>
+          <hr>
+          <div class="btn-group cart">
+            <a href="/add-to-cart/{{../../id}}" type="button" class="btn btn-success disabled">
+              Add to cart 
+            </a>
+          </div>
+          {{/startsWith}}
+					<div class="btn-group wishlist">
+						<a href="/wishlist/{{../../id}}" type="button" class="btn btn-danger">
+							Add to wishlist 
+						</a>
+					</div>
+				</div> 
+		</div>
+	</div>
+</div>
+		<div class="container-fluid" style="padding-top: 150px;">		
+			<div class="col-md-12 product-info">
+					<ul id="myTab" class="nav nav-tabs nav_tabs">
+						
+						<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+						<li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>
+						<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+						
+					</ul>
+				<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade in active" id="service-one">
+						 
+							<section class="container product-info">
+								The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for building or upgrading a Gaming PC. A single +12V rail provides up to 48A of reliable, continuous power for multi-core gaming PCs with multiple graphics cards. The ultra-quiet, dual ball-bearing fan automatically adjusts its speed according to temperature, so it will never intrude on your music and games. Blue LEDs bathe the transparent fan blades in a cool glow. Not feeling blue? You can turn off the lighting with the press of a button.
+
+								<h3>Corsair Gaming Series GS600 Features:</h3>
+								<li>It supports the latest ATX12V v2.3 standard and is backward compatible with ATX12V 2.2 and ATX12V 2.01 systems</li>
+								<li>An ultra-quiet 140mm double ball-bearing fan delivers great airflow at an very low noise level by varying fan speed in response to temperature</li>
+								<li>80Plus certified to deliver 80% efficiency or higher at normal load conditions (20% to 100% load)</li>
+								<li>0.99 Active Power Factor Correction provides clean and reliable power</li>
+								<li>Universal AC input from 90~264V — no more hassle of flipping that tiny red switch to select the voltage input!</li>
+								<li>Extra long fully-sleeved cables support full tower chassis</li>
+								<li>A three year warranty and lifetime access to Corsair’s legendary technical support and customer service</li>
+								<li>Over Current/Voltage/Power Protection, Under Voltage Protection and Short Circuit Protection provide complete component safety</li>
+								<li>Dimensions: 150mm(W) x 86mm(H) x 160mm(L)</li>
+								<li>MTBF: 100,000 hours</li>
+								<li>Safety Approvals: UL, CUL, CE, CB, FCC Class B, TÜV, CCC, C-tick</li>
+							</section>
+										  
+						</div>
+					<div class="tab-pane fade" id="service-two">
+						
+						<section class="container product-info">
+                {{ this.description_full }}
+              </section>
+						
+					</div>
+          {{/each}}
+          {{/each}}           
+					<div class="tab-pane fade" id="service-three">
+						<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="page-header">Comments</h2>
+        <section class="comment-list">
+          <!-- First Comment -->
+          {{#each comments}}
+          {{#each this}}
+          <article class="row">
+            <div class="col-md-2 col-sm-2 hidden-xs">
+              <figure class="thumbnail">
+                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                <figcaption class="text-center">{{ this.name }}</figcaption>
+              </figure>
+            </div>
+            <div class="col-md-10 col-sm-10">
+              <div class="panel panel-default arrow left">
+                <div class="panel-body">
+                  <header class="text-left">
+                    <div class="comment-user"><i class="fa fa-user"></i> {{ this.name }}</div>
+                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{dateHelper this.time "dddd, MMMM Do YYYY, h:mm:ss a"}}</time>
+                  </header>
+                  <div class="comment-post">
+                    <p>{{ this.comment }}</p>
+                  </div>
+                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                </div>
+              </div>
+            </div>
+          </article>
+          {{/each}}
+          {{/each}}
+          <!-- Second Comment Reply -->
+          <!-- Third Comment -->
+          <!-- Fourth Comment -->
+          <!-- Fifth Comment -->
+          <!-- Sixth Comment Reply -->
+        </section>
+    </div>
+  </div>
+</div>
+						<form action="/comment" method="post" id="comment-form">
+						<div class="row">
+        					<div class="col-sm-8" >
+            					<label for="comment">Comments</label>
+            					<textarea id="comment" name="comment" rows="5" class="form-control" required></textarea>
+            					<input id="id" name="id" value="{{ id }}" class="hidden"></input>
+        					</div>
+    					</div>
+    					<br/>
+    					<div class="row">
+        					<div class="col-sm-8" >
+            					<button type="submit" class="btn btn-success btn-lg">
+                				<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                					Add comment
+            					</button>
+        					</div>
+    					</div> 
+    					</form>  				
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+{{# if targetProducts }}    
+<div class="container">
+<h1 class=""> Recommended products </h1> 
+  <div class="row">
+      <!-- BEGIN PRODUCTS -->
+      {{#each targetProducts }}
+      {{#each this}}
+      <div class="col-md-3 col-sm-6">
+        <span class="thumbnail text-center">
+            <img src="{{ this.imagePath }}" alt="...">
+            <h4 class="text-danger title">{{ this.title }}</h4>
+            <div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+            <p>{{ this.description }}</p>
+            
+
+            <hr class="line">
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <a href="/wishlist/{{ this._id }}" role="button" class="btn btn-link">Add to Wishlist</a>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <a href="/product/{{ this.id }}" role="button" class="btn btn-danger right" > View product</a>
+              </div>
+              
+            </div>
+        </span>
+      </div>
+      {{/each}}
+      {{/each}}
+  </div>
+</div>
+{{/if}}   

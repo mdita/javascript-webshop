@@ -1,0 +1,69 @@
+<div class="row hidden">
+    <div class="col-md-4 col-md-offset-4">
+        <h1>Sign Up</h1>
+        {{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                    <p>{{ this }}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        <form action="/user/signup" method="post">
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+</div>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+        {{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                    <p>{{ this }}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form method="POST" action="/user/signup" role="form">
+                        <div class="form-group">
+                            <h2>Create account</h2>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="signupName">Your name</label>
+                            <input id="signupName" name="signupName" type="text" maxlength="50" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="signupEmail">Email</label>
+                            <input id="email" name="email" type="email" maxlength="50" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="signupPassword">Password</label>
+                            <input id="password" name="password" type="password" maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="signupPasswordagain">Password again</label>
+                            <input id="passwordAgain" name="passwordAgain" type="password" maxlength="25" class="form-control">
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                        <div class="form-group">
+                            <button id="signupSubmit" type="submit" class="btn btn-info btn-block">Create your account</button>
+                        </div>
+                        <p class="form-group">By creating an account, you agree to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
+                        <hr>
+                        <p></p>Already have an account? <a href="/user/signin">Sign in</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>

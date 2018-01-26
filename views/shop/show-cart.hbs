@@ -1,0 +1,286 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+            <div class="alert alert-danger hidden">
+                    <p id="alert-msg">dasdas</p>
+            </div>
+    </div>
+</div>
+<!--
+{{# if products }}
+    <div class="row hidden">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <ul class="list-group">
+                {{# each products }}
+                    <li class="list-group-item">
+                        <span class="badge">{{ this.qty }}</span>
+                        <strong>{{ this.item.title }}</strong>
+                        <span class="label label-success">{{../symbol}}{{ this.price }}</span>
+                        <div class="btn-group">
+                            <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/reduce/{{this.item._id}}">Reduce by 1</a></li>
+                                <li><a href="/remove/{{this.item._id}}">Remove All</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="row hidden">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <strong>{{{__ "total"}}}: {{ totalPrice }}</strong>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout/card" type="button"><img src="http://jakebarford.github.io/images/logo-stripe.png" height="58" width="166"></a>
+        </div>
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout/paypal" type="button"><img src="http://slots-guide.eu/wp-content/uploads/2015/10/Paypal-Casino-Bonuses.jpg" height="58" width="166"></a>
+        </div>
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout/bitcoin" type="button"><img src="http://www.rocketcases.com/blog/wp-content/uploads/2013/04/Bitcoin-logo.jpg" height="58" width="166"></a>
+        </div>
+    </div>
+{{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>{{{__ "noItems"}}}</h2>
+        </div>
+    </div>
+{{/if}}
+-->
+{{# if products }}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="/" role="button" class="btn btn-primary btn-sm btn-block">
+                                    <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {{# each products }}
+                    <div class="row">
+                        <div class="col-xs-2"><img class="img-responsive" src="{{ this.item.imagePath }}">
+                        </div>
+                        <div class="col-xs-4">
+                            <h4 class="product-name"><strong>{{ this.item.title }}</strong></h4><h4><small>Product description</small></h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-6 text-right">
+                                <h6><strong>{{../symbol }} {{ this.price }} <span class="text-muted">x</span></strong></h6>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="number" min="1" max="5" class="form-control input-sm" value="{{ this.qty }}">
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="/remove/{{this.item._id}}" role="button" class="btn btn-link btn-xs">
+                                    <span class="glyphicon glyphicon-trash"> </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    {{/each}}
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="col-xs-9">
+                                <h6 class="text-right">Added items?</h6>
+                            </div>
+                            <div class="col-xs-3">
+                                <a href="/" role="button" class="btn btn-default btn-sm btn-block">
+                                    Update cart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" style="padding-bottom:20px;">
+                        <div class="text-center">
+                            <div class="col-xs-6">
+                                <h6 class="text-right">Select your delivery</h6>
+                            </div>
+                            <div class="col-xs-6">
+                                <select class="selectpicker" data-live-search="true">
+                                    <option data-tokens="free">Free delivery</option>
+                                    <option data-tokens="normal">Normal delivery</option>
+                                    <option data-tokens="express">Express delivery</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                <div class="panel-footer">
+                    <div class="row text-center">
+                        <div class="col-xs-9">
+                            <h4 class="text-right">{{{__ "total"}}}: <strong>{{ symbol }} {{ totalPrice }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                    <!--REVIEW ORDER-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <h4>Review Order</h4>
+                        </div>
+                        <div class="panel-body">
+                                <div class="col-md-12">
+                                    <strong>Subtotal (# item)</strong>
+                                    <div class="pull-right"><span>{{ symbol }}</span><span>{{ totalPrice }}.00</span></div>
+                                </div>
+                                <div class="col-md-12">
+                                    <strong>Tax</strong>
+                                    <div class="pull-right"><span>{{ symbol }}</span><span>0.00 ({{{__ "vat"}}})</span></div>
+                                </div>
+                                <div class="col-md-12">
+                                    <small>Shipping</small>
+                                    <div class="pull-right"><span>{{ symbol }}</span><span>{{ shipping }}.00</span></div>
+                                    <br>
+                                    <hr>
+                                </div>
+                                <div class="col-md-12">
+                                    <small></small>
+                                    <div class="pull-right"><span>Delivered in 3 working days.</span></div>
+                                    <hr>
+                                </div>
+                                {{#if isCoupon }}
+                                <div class="col-md-12">
+                                    <small>Coupon discount</small>
+                                    <div class="pull-right"><span>- {{ symbol }}</span><span>{{ couponValue }}</span></div>
+                                    <div class="col-xs-2">
+                                        <button class="btn btn-danger btn-xs remove-coupon"><span class="glyphicon glyphicon-trash"></span></button>
+                                    </div>
+                                    <hr>
+                                </div>
+                                {{ else }}
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-success coupon" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Apply coupon</button>
+                                    <div class="pull-right"><input type="text" class="form-control" id="coupon"></div>
+                                    <hr>
+                                </div>
+                                {{/if}}
+                                <div class="col-md-12">
+                                    <strong>Order Total</strong>
+                                    <div class="pull-right"><span>{{ symbol }}</span><span>{{totalAllThree}}</span></div>
+                                    <hr>
+                                </div>
+                                
+                                <button type="button" data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                                
+                        </div>
+                        
+                    </div>
+                    <!--REVIEW ORDER END-->
+</div>
+{{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>{{{__ "noItems"}}}</h2>
+        </div>
+    </div>
+{{/if}}
+
+<!-- line modal -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title" id="lineModalLabel">Checkout methods</h3>
+        </div>
+        <div class="modal-body">
+            
+            <!-- content goes here -->
+            <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout/card" type="button"><img src="http://jakebarford.github.io/images/logo-stripe.png" height="58" width="166"></a>
+        </div>
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout/paypal" type="button"><img src="http://slots-guide.eu/wp-content/uploads/2015/10/Paypal-Casino-Bonuses.jpg" height="58" width="166"></a>
+        </div>
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout/bitcoin" type="button"><img src="http://www.rocketcases.com/blog/wp-content/uploads/2013/04/Bitcoin-logo.jpg" height="58" width="166"></a>
+        </div>
+    </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+
+
+$('.coupon').on('click', function() {
+    var $this = $(this);
+    var coupon = $('#coupon').val();
+
+    if (coupon === '') {
+        alert('empty field for coupon');
+    }
+
+    if (coupon !== '') {
+        $('#coupon').attr('disabled', true);
+        $this.button('loading');
+    $.ajax({
+          url: '/coupon/'+coupon,
+          complete : function(){
+          },
+          success: function(data, status){
+            console.log(data);
+            console.log(status);
+
+            if (data === 'This coupon is not valid.') {
+                $this.button('reset');
+            $('#coupon').attr('disabled', false);
+            $('#alert-msg').text(data);
+            $('div.alert.alert-danger').removeClass('hidden');
+            } else {
+                $("body").html(data);
+                $('.dropdown-toggle').dropdown();
+            }
+          }
+        });
+    }
+});
+
+$('.remove-coupon').on('click', function() {
+    console.log('remove coupon...');
+    $.ajax({
+          url: '/delete/coupon',
+          complete : function(){
+          },
+          success: function(data, status){
+            console.log(data);
+            console.log(status);
+
+            $("body").html(data);
+            $('.dropdown-toggle').dropdown();
+          }
+        });
+});
+
+</script>

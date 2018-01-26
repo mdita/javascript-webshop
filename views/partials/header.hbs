@@ -1,0 +1,106 @@
+<nav id="shop-navigation" class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/shop"><img class="navbar-brand" src="/images/logo.png"></img></a>
+        </div>
+        <div class="navbar-form navbar-left" id="the-basics" role="search">
+            <input type="text" id="test2" class="typeahead form-control" placeholder="Search">
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="/show-cart">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> {{{__ "shoppingCart"}}}
+                        <span class="badge">{{ session.cart.totalQ }}</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{{__ "user"}}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {{#if login }}
+                            <li><a href="/user/profile">User Account</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/user/logout">{{{__ "logout"}}}</a></li>
+                        {{ else }}
+                            <li><a href="/user/signin">{{{__ "signIn"}}}</a></li>
+                            <li><a href="/user/signup">{{{__ "signUp"}}}</a></li>
+                        {{/if}}
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    {{#eq symbol "$"}}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-dollar"></i> {{{__ "currency"}}}<span class="caret"></span></a>
+                    {{ else }}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-eur"></i> {{{__ "currency"}}}<span class="caret"></span></a>
+                    {{/eq}}
+                    <ul class="dropdown-menu">
+                        <li><a href="/currency/usd"><i class="fa fa-dollar"></i> usd</a></li>
+                        <li><a href="/currency/eur"><i class="fa fa-eur"></i> eur</a></li> 
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language"></i> {{{__ "language"}}}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/en"><i class=""></i> EN</a></li>
+                        <li><a href="/de"><i class=""></i> DE</a></li> 
+                    </ul>
+                </li>
+                <li>
+                    <a href="/wishlist">
+                        <span class="glyphicon glyphicon-heart"></span> {{{__ "wishlist"}}}
+                    </a>
+                </li>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> {{{__ "shoppingCart"}}}
+                        <span class="badge">{{ session.cart.totalQ }}</span></a>
+          <ul class="dropdown-menu dropdown-cart" role="menu">
+              {{# eq session.cart.totalQ 0}}
+              <li>
+                  <span class="item">
+                    <span class="item-center">
+                        <span class="item-info">
+                            <span>No Items in Cart</span>
+                        </span>
+                    </span>
+                </span>
+              </li>
+              {{else}}
+              {{# each session.cart.items }}
+              <li>
+                  <span class="item">
+                    <span class="item-left">
+                        <img src="{{ this.item.imagePath }}" alt="" />
+                        <span class="item-info">
+                            <span>{{ this.item.title }}</span>
+                            {{# eq ../session.cart.currency "usd" }}
+                            <span>${{ this.price }}</span>
+                            {{ else }}
+                            <span>€{{ this.price }}</span>
+                            {{/eq}}
+                            <span>qty: {{ this.qty }}</span>
+                        </span>
+                    </span>
+                    <a href="/remove/{{this.item._id}}" class="item-right">
+                         <span class="btn btn-xs btn-danger pull-right">x</span>
+                    </a>
+                </span>
+              </li>
+              {{/each}}
+              <li class="divider"></li>
+              <li><a class="text-center" href="/show-cart">View Cart</a></li>
+          </ul>
+        </li>
+              {{/eq}}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

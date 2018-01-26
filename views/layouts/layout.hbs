@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/modernizr.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+  </head>
+  <body>
+    {{> header }}
+   <script
+  src="/javascripts/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous">
+  </script>
+  <script 
+  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js">
+  </script>
+  <script src="/javascripts/jquery.menu-aim.js"></script> <!-- menu aim -->
+  <script src="/javascripts/main.js"></script> <!-- Resource jQuery -->
+  <div class="container">
+    <ul id="test" class="list-group col-sm-6 col-md-4" style="position: absolute; z-index: 999;">
+  </ul>
+<div id="test" class="dropdown search">
+  <button class="btn btn-primary dropdown-toggle hidden" type="button" data-toggle="dropdown">Dropdown Example
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
+  </ul>
+</div>
+    {{{body}}}
+  </div>
+    <!-- Latest compiled and minified JavaScript -->
+  {{> footer }}
+<script src="/javascripts/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+  </body>
+</html>

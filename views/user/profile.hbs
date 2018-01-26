@@ -1,0 +1,88 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+    {{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                    <p>{{ this }}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        {{#if successMsg}}
+            <div class="alert alert-success">
+                    <p>{{ successMsg }}</p>
+            </div>
+        {{/if}}
+		<h1>User profile here , Welcome {{ email }}</h1>
+		<hr>
+		<h2 style="padding-bottom: 25px;">My Orders</h2>
+		{{# each orders }}
+			<div class="panel panel-default">
+  				<div class="panel-body">
+          <h3 style="padding-bottom: 25px;"> Paid via {{ this.paymentType }} </h1>
+    				<ul class="list-group">
+    					{{# each this.items }}
+  						<li class="list-group-item">
+              {{#startsWith ../this.currency "usd"}}
+    						<span class="badge">${{ this.price }}</span>
+              {{ else }}  
+                <span class="badge">€{{ this.price }}</span>
+              {{/startsWith}}  
+    						{{ this.item.title }} | qty: {{ this.qty }}
+  						</li>
+  						{{/each}}
+					</ul>
+  				</div>
+  				{{#startsWith this.currency "usd"}}
+            		<div class="panel-footer">
+                  Subtotal items: $ {{ this.cart.totalPrice }}
+                  <br>
+                  Shipping : $ {{ this.cart.shipping }}
+                  <br>
+                  Subtotal : $ {{ this.cart.totalPriceShipping }}
+                </div>
+                <div class="panel-footer">
+                {{# if this.cart.coupon.value }}
+                  Coupon: - $ {{ this.cart.coupon.value }}
+                  <br>
+                {{/if}}
+                  Total : $ {{ this.cart.totalAllThree }}
+                </div>
+              {{/startsWith}}  
+          		{{#startsWith this.currency "eur"}}
+            		<div class="panel-footer">
+                  Subtotal items: € {{ this.cart.totalPrice }}
+                  <br>
+                  Shipping : € {{ this.cart.shipping }}
+                  <br>
+                  Subtotal : € {{ this.cart.totalPriceShipping }}
+                </div>
+                <div class="panel-footer">
+                {{# if this.cart.coupon.value }}
+                  Coupon: - € {{ this.cart.coupon.value }}
+                  <br>
+                {{/if}}
+                  Total : € {{ this.cart.totalAllThree }}
+                </div>
+          		{{/startsWith}}
+              {{#startsWith this.currency "BTC"}}
+                <div class="panel-footer">
+                  Subtotal items: € {{ this.cart.totalPrice }}
+                  <br>
+                  Shipping : € {{ this.cart.shipping }}
+                  <br>
+                  Subtotal : € {{ this.cart.totalPriceShipping }}
+                </div>
+                <div class="panel-footer">
+                {{# if this.cart.coupon.value }}
+                  Coupon: - € {{ this.cart.coupon.value }}
+                  <br>
+                {{/if}}
+                  Total : € {{ this.cart.totalAllThree }}
+                  <br>
+                  {{ this.currency }} : {{ this.totalBTC }}
+                </div>
+              {{/startsWith}}
+			</div>
+		{{/each}}
+	</div>
+</div>
